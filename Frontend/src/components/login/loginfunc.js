@@ -39,28 +39,6 @@ export async function LoginUser(logs, dispatch, navigate) {
   }
 }
 
-async function UserProfile(token) {
-  try {
-    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-      method: "GET", // Changement de POST à GET si nécessaire
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const retour = await response.json();
-    return retour.body;
-  } catch (error) {
-    console.error("Error in UserProfile:", error);
-    throw error;
-  }
-}
-
 export async function ChangeUsername(newusername, dispatch, token) {
   try {
     const response = await fetch("http://localhost:3001/api/v1/user/profile", {
