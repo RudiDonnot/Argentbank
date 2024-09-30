@@ -1,12 +1,12 @@
 import {
   setToken,
-  setfirstName,
-  setlastName,
-  setuserName,
+  setFirstName,
+  setLastName,
+  setUserName,
   logout,
 } from "../../Slice/loginslice";
 
-export async function LoginUser(logs, dispatch, navigate) {
+export async function loginUser(logs, dispatch, navigate) {
   try {
     const response = await fetch("http://localhost:3001/api/v1/user/login", {
       method: "POST",
@@ -28,10 +28,10 @@ export async function LoginUser(logs, dispatch, navigate) {
     const retour = await response.json();
 
     dispatch(setToken({ token: retour.body.token }));
-    const userProfile = await UserProfile(retour.body.token);
-    dispatch(setuserName(userProfile.userName));
-    dispatch(setfirstName(userProfile.firstName));
-    dispatch(setlastName(userProfile.lastName));
+    const userProfile = await userProfileFetching(retour.body.token);
+    dispatch(setUserName(userProfile.userName));
+    dispatch(setFirstName(userProfile.firstName));
+    dispatch(setLastName(userProfile.lastName));
     navigate("/accountPage");
   } catch (error) {
     console.error("Error in LoginUser:", error);
@@ -39,7 +39,7 @@ export async function LoginUser(logs, dispatch, navigate) {
   }
 }
 
-async function UserProfile(token) {
+async function userProfileFetching(token) {
   try {
     const response = await fetch("http://localhost:3001/api/v1/user/profile", {
       method: "GET", // Changement de POST à GET si nécessaire
@@ -61,7 +61,7 @@ async function UserProfile(token) {
   }
 }
 
-export async function ChangeUsername(newusername, dispatch, token) {
+export async function changeUsername(newusername, dispatch, token) {
   try {
     const response = await fetch("http://localhost:3001/api/v1/user/profile", {
       method: "PUT",
@@ -77,7 +77,7 @@ export async function ChangeUsername(newusername, dispatch, token) {
     }
 
     const retour = await response.json();
-    dispatch(setuserName(newusername));
+    dispatch(setUserName(newusername));
     return retour.body;
   } catch (error) {
     console.error("Error in ChangeUsername:", error);

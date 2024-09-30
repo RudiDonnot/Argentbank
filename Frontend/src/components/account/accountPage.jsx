@@ -1,6 +1,6 @@
-import Accountbanner from "./accountBanner";
+import AccountBanner from "./accountBanner";
 import { useState } from "react";
-import { ChangeUsername } from "../login/loginfunc";
+import { changeUsername } from "../login/loginfunc";
 import { useSelector, useDispatch } from "react-redux";
 
 function AccountPage() {
@@ -19,9 +19,9 @@ function AccountPage() {
     setEdit(false);
   }
 
-  const cusername = (event) => {
+  const userNameButton = (event) => {
     event.preventDefault();
-    ChangeUsername(userNameInput, dispatch, token);
+    changeUsername(userNameInput, dispatch, token);
   };
 
   return (
@@ -70,7 +70,7 @@ function AccountPage() {
               <div className={"form-buttons"}>
                 <button
                   type="submit"
-                  onClick={cusername}
+                  onClick={userNameButton}
                   className="sign-in-button"
                 >
                   Save
@@ -88,17 +88,17 @@ function AccountPage() {
         )}
       </div>
       <h2 className="sr-only">Accounts</h2>
-      <Accountbanner
+      <AccountBanner
         accountId={"8349"}
         type={"Checking"}
         balance={"2,082.79"}
       />
-      <Accountbanner
+      <AccountBanner
         accountId={"6712"}
         type={"Savings"}
         balance={"10,928.42"}
       />
-      <Accountbanner
+      <AccountBanner
         accountId={"8349"}
         type={"Credit Card"}
         balance={"184.30"}

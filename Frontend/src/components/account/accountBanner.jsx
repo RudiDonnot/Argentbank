@@ -1,4 +1,4 @@
-function Accountbanner({ type, accountId, balance }) {
+function AccountBanner({ type, accountId, balance }) {
   return (
     <section className="account">
       <div className="account-content-wrapper">
@@ -15,4 +15,4 @@ function Accountbanner({ type, accountId, balance }) {
   );
 }
 
-export default Accountbanner;
+export default AccountBanner;
